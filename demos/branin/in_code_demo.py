@@ -14,7 +14,7 @@ def main():
   max_capital = 100
   opt_val, opt_pt = maximise_function(branin, max_capital, domain_bounds=domain_bounds,
                                       hp_tune_criterion='post_sampling',
-                                      hp_tune_method='slice')
+                                      hp_tune_method='slice', num_workers=1)
   print('Optimum Value in %d evals: %0.4f'%(max_capital, opt_val))
   print('Optimum Point: %s'%(opt_pt))
 

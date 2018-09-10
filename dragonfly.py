@@ -22,7 +22,7 @@ from gp.euclidean_gp import euclidean_gp_args
 from utils.option_handler import get_option_specs, load_options
 from parse.config_parser import config_parser
 from utils.reporters import get_reporter
-from exd.worker_manager import SyntheticWorkerManager
+from exd.worker_manager import RealWorkerManager
 from exd.experiment_caller import EuclideanFunctionCaller, FunctionCaller
 from opt.gp_bandit import EuclideanGPBandit
 from exd import domains
@@ -67,7 +67,7 @@ def maximise_function(func, max_capital, domain=None, domain_bounds=None,
       raise ValueError('Domain or path to config file or domain_bounds have to be given.')
 
   # Create worker manager and function caller
-  worker_manager = SyntheticWorkerManager(num_workers, time_distro='caller_eval_cost')
+  worker_manager = RealWorkerManager(num_workers, './tmp')
   if isinstance(domain, domains.EuclideanDomain):
     func_caller = EuclideanFunctionCaller(func, domain, vectorised=False)
   else:
